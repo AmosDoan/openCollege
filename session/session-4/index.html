@@ -1,0 +1,365 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>OpenCollege - Bot 개발로 시작하는 프로그래밍 #4</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h3>Open College - </h3>
+                <h4>Bot개발로 시작하는 프로그래밍 프로젝트</h4>
+                <h4>Session #4 2019/08/09</h4>
+                <p>
+                    <small>Created by <a href="https://mossol.net">Amos Dawn</a></small>
+                </p>
+            </section>
+
+            <section>
+                <section data-markdown>
+                    <textarea data-template>
+                            ## Today's TODO 
+
+                            * <bdi style="color:skyblue;">[70 min.]</bdi> Bootstrap으로 만든 홈페이지 Heroku에 업로드하기
+                             * <bdi style="color:skyblue;">[10 min.]</bdi> Break time
+                            * <bdi style="color:skyblue;">[40 min.]</bdi> Python Homework #0. 같이 풀어보기
+                        </textarea>
+                </section>
+
+                <section data-markdown>
+                    <textarea data-template>
+                            ## Today's Objective 
+
+                            * Heroku에 직접 만든 홈페이지를 올려보자
+                            * Python 감을 잡아보자 
+                    </textarea>
+                </section>
+            </section>
+
+            <section>
+                <section data-markdown>
+                    ### 복습 - Flask로 Web Application Server
+
+                    * Flask 및 Bootstrap으로 홈페이지 만들기
+                </section>
+
+                <section data-markdown>
+                    <textarea data-template>
+                    ### Project 구성 
+
+                    * app.py - Web API를 구현할 Python File
+                    * templates - Web API를 통하여 Serving 할 HTML 파일
+                      * introduce.html - 자기소개 페이지
+
+                    <img src="./images/configuration.png">
+                    </textarea>
+                </section>
+
+                <section data-markdown>
+                    <textarea data-template>
+                    ### 지난 시간 복습
+
+                    ```
+                    from flask import Flask
+                    from flask import request
+
+                    app = Flask(__name__)
+
+                    @app.route('/hello/&ltname&gt')
+                    def index(name):
+                        return "Hello " + name
+
+                    @app.route('/profile')
+                    def profile():
+                        age = request.args.get('age')
+                        return "My age is " + age
+
+                    if __name__ == '__main__':
+                        app.run()
+                    ```
+                    </textarea>
+                </section>
+
+                <section data-markdown>
+                    <textarea data-template>
+                    ### Flaks Template
+
+                    * Web API의 결과물을 HTML로 표현하기 위한 기능
+
+                    ```
+                    @app.route('/profile')
+                    def profile():
+                        address = request.args.get('address')
+                        return render_template('address.html', address = address
+                    ```
+                    </textarea>
+                </section>
+
+                <section data-markdown>
+                    ### app.py
+
+                    ```
+                    from flask import Flask, render_template
+
+                    app = Flask(__name__)
+                    app.config['TEMPLATES_AUTO_RELOAD'] = True
+                    
+                    @app.route('/')
+                    def index():
+                        return 'this is my homepage!'
+                    
+                    @app.route('/dohan')
+                    def dohan():
+                        return render_template('introduce.html')
+                    
+                    if __name__ == '__main__':
+                        app.run()
+                    ```
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+
+                    ### introduce.html
+
+                    * 간단한 페이지
+
+                    ```
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <title>Title</title>
+                    </head>
+                    <body>
+                    바디입니다!
+                    </body>
+                    </html>
+                    ```
+
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+
+                    ### Bootstrap이란?
+
+                    * 반응형 웹 페이지를 개발하기 위한 프레임워크
+                    * https://getbootstrap.com/
+                        * http://bootstrapk.com/
+
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+
+                    ### introduce.html
+
+                    * bootstrap의 기본 뼈대
+
+                    ```
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+                    ```
+                   </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+
+                    ### introduce.html
+
+                    * bootstrap본 다양한 컴포넌트를 적용시켜보자
+
+                    ```
+<nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">홈</a></li>
+          <li class="breadcrumb-item"><a href="#">프로필</a></li>
+      </ol>
+  </nav>
+
+  <h1>Welcome!!<span class="badge badge-secondary">New</span></h1>
+  <div class="jumbotron">
+      <h1 class="display-4">안녕하세요!</h1>
+      <p class="lead">제 홈페이지를 방문해주셔서 감사합니다</p>
+      <hr class="my-4">
+      <p>프로그래밍 너무 어려워요</p>
+      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+  </div>
+                    ```
+                   </textarea>
+                </section>
+            </section>
+            <section>
+                <section data-markdown>
+                    <textarea data-template>
+                    ### Heroku에 만든 홈페이지 업로드하기
+
+                    * github, heroku 연동
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                    ### Heroku 홈페이지 로그인
+
+                    * https://heroku.com
+
+                    <img src="images/heroku1.PNG"/>
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ### 나의 App. 만들기
+
+                        * Region은 천조국으로 합시다.
+
+                        <img src="images/heroku2.PNG" height="425" width="726"/>
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ### 배포 방식 선택하기
+
+                        * 여러분은 껌정화면 보면 놀라므로 Github를 선택해줍니다.
+
+                        <img src="images/heroku3.PNG" width="80%"/>
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ### Repository 선택하기
+
+                        * 여러분은 Repository가 하나이므로 저처럼 고민하실 필요가 없습니다.
+
+                        ![heroku](./images/heroku4.png)
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ### Branch 선택하기
+
+                        * 여러분은 Branch가 하나이므로 저처럼 고민하실 필요가 없습니다.
+                         * 앞으로 master branch에 push하면 자동으로 배포됩니다.
+
+                        ![heroku](./images/heroku5.png)
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ### gunicorn 설치하기
+
+                        * 실제 서비스에 사용될 web-server gunicorn을 설치합니다.
+                         * 프로젝트 최상단에 /Procfile 파일을 만들고 아래 내용을 입력합니다.
+
+                        ```
+                        web gunicorn app:app
+                        ```
+
+                        ![heroku](./images/heroku6.png)
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ### requirements.txt 작성하기
+
+                        * 실제 서비스에 사용될 Heroku에서 현재 프로젝트에 필요한 라이브러리 파일 목록을 줘야합니다.
+                         * 이러한 목록은 requirements.txt에 있습니다.
+                        * terminal을 열어 다음과 같이 파일을 생성합니다.
+
+                        ```
+                       pip freeze > requirements.txt
+                        ```
+
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ### push 하기
+
+                        * 추가한 Procfile, requirements.txt를 push 합시다.
+
+                        ![gitpush](./images/gitPush.png)
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ### Build
+
+                        * 곧 이어 배포가 시작됩니다.
+
+                        ![heroku7](./images/heroku7.png)
+                        ![heroku8](./images/heroku8.png)
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ### Complete
+
+                        * 배포가 완료되었습니다.
+                         * 직접 주소를 입력하여 확인해봅시다.
+
+                        ![heroku9](./images/heroku9.png)
+                    </textarea>
+                </section>
+            </section>
+
+            <section style="text-align: left;">
+                <h1>THE END</h1>
+                <h2>Is there any questions?</h2>
+                <p>
+                    - <a href="mailto:amos.doan@gmail.com">amos.doan@gmail.com</a> <br>
+                    - <a href="https://mossol.net">mossol.net</a> <br>
+                </p>
+            </section>
+        </div>
+    </div>
+
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // More info about config & dependencies:
+        // - https://github.com/hakimel/reveal.js#configuration
+        // - https://github.com/hakimel/reveal.js#dependencies
+        Reveal.initialize({
+            hash: true,
+            dependencies: [
+                { src: 'plugin/markdown/marked.js' },
+                { src: 'plugin/markdown/markdown.js' },
+                { src: 'plugin/notes/notes.js', async: true },
+                { src: 'plugin/highlight/highlight.js', async: true }
+            ]
+        });
+    </script>
+</body>
+
+</html>
