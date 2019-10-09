@@ -1,0 +1,545 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>OpenCollege - Python Programming부터 Web Programming까지 #0</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section>
+                    <h3>Open College - <br/>Bot개발로 시작하는 프로그래밍 프로젝트</h3>
+                    <h4>Session #0 2019/06/14</h4>
+                    <p>
+                    <small>Created by <a href="https://mossol.net">Amos Dawn</a></small>
+                    </p>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>근황 Talk</h3>
+                        <h4>다들 2주간 잘 지내셨나요?</h4>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                        ### Programming 돈내고 배우지 마세요!
+
+                        * http://opentutorials.org
+                         * 다양한 주제, 운영자가 비전공자
+                        * https://olc.kr/main/index.jsp
+                         * 컴퓨터 공학 전공지식 및 실무에 대한 내용이 풍부함
+                        * https://wikidocs.net/
+                         * 점프투파이썬 등 기타 책으로 출간된 프로그래밍 문서
+                        </textarea>
+                    </section>
+                </section>
+
+				<section>
+                
+                    <section data-markdown>
+                        <textarea data-template>
+                            ## Today's TODO 
+
+                            * <bdi style="color:skyblue;">[40 min.]</bdi> Server - Client란? REST API란?
+                             * <bdi style="color:skyblue;">[10 min.]</bdi> Break time
+                            * <bdi style="color:skyblue;">[40 min.]</bdi> Python Grammer Review - 프로그램의 흐름을 느껴보자
+                             * <bdi style="color:skyblue;">[10 min.]</bdi> Break time
+                            * <bdi style="color:skyblue;">[40 min.]</bdi> Free coding time - Flask의 기초
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ## Today's Objective 
+
+                            * <bdi style="color:skyblue;">Server</bdi>와 <bdi style="color:skyblue;">Client</bdi>의 개념을 이해해보자
+                            * <bdi style="color:skyblue;">HTTP Protocol</bdi>에 대해서 알아보자
+                            * 프로그램의 흐름에 대해 이해해보자
+                            * <bdi style="color:skyblue;">Flask</bdi>로 간단한 <bdi style="color:skyblue;">Server</bdi>를 만들어보자
+                        </textarea>
+                    </section>
+
+                </section>
+                <section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Computer Network
+
+                            * 태초의 Computer는 그냥 계산만 하는 기계
+                            * Computer와 Computer 사이의 통신에 대한 Needs가 생기기 시작
+                             * 다양한 Computer Network가 등장
+                             * Internet - Network의 Network
+
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Server & Client 
+
+                            * Server 
+                             * 다른 Computer에 서비스를 제공하는 Program 
+                             * Web Server, Application Server, File Server, Game Server
+                            * Client 
+                             * Service 혹은 Resource를 다른 프로그램에게 요청하는 Program
+                             * Web Browser, FTP Client, Game Client
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Networking Protocol 
+
+                            * Computer와 Computer 사이에 어떠한 방법으로 통신을
+                            할지 규칙이 필요함
+                            * Data를 언제 어떻게 전송할 것인지? 약속을 하자!
+                             * 즉, 약속된 통신 방법
+                             * http, http, TCP/IP, ftp, ssh (...)
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### HTTP Protocol 
+
+                            * HTML 문서와 같은 리소스를 가져울 수 있도록 해주는
+                            Protocol 
+
+                            <img src="./images/http_protocol.png" width="50%"/>
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Web Server 
+                            
+                            * Web Resource를 제공하는 Server 
+                             * 정적 Data를 Serving
+                             * Apache Web Server, Nginx Server, IIS
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Web Application Server 
+
+                            * Business Logic을 실행한 결과를 제공하는 Server 
+                             * 동적 Data를 Serving
+                             * Apache Tomcat, PHP Module on Web Server, Eclipse Jetty 
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### HTTP Flow 
+                            
+                            * HTTP Request와 그에 대한 Response로 구성
+                            * Request와 Response는 HTTP Message이며, Header와 Body로 구성됨 
+
+                            <img src="./images/HTTP_Request.png" width="30%"/>
+                            <img src="./images/HTTP_Response.png" width="30%"/>
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### HTTP Message Example
+                            
+                            ```
+                            curl -X GET -L http://naver.com
+                            ---
+                            > GET / HTTP/1.1
+                            > Host: naver.com
+                            > User-Agent: curl/7.54.0
+                            > Accept: */*
+                            ```
+
+                            ```
+                            < HTTP/2 200
+                            < server: NWS
+                            < date: Sun, 09 Jun 2019 06:15:02 GMT
+                            < content-type: text/html; charset=UTF-8
+                            ```
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### HTTP Response Code 
+                           
+                            <table>
+                                <thead>
+                                    <td>
+                                        Status Code
+                                    </td>
+                                    <td>
+                                        Description
+                                    </td>
+                                </thead>
+                                <tr>
+                                    <td>200 OK</td>
+                                    <td>요청에 대한 처리가 성공</td>
+                                </tr>
+                                <tr>
+                                    <td>404 Not Found</td>
+                                    <td>요청받은 Resource가 없음</td>
+                                </tr>
+                                <tr>
+                                    <td>500 Internal Server Error</td>
+                                    <td>서버 내부 요류</td>
+                                </tr>
+                            </table>
+
+                            * https://developer.mozilla.org/ko/docs/Web/HTTP/Status
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### REST API (Advanced)
+                            
+                            * Roy Fielding - Architectural Styles and the Design of Network-based Software Architectures
+                            * HTTP 프로토콜의 의도에 맞게 활용될 수 있는 API 설계 방법 혹은 철학
+
+                            ```
+                            * URI는 자원을 표현해야 한다.
+                            * 자원에 연산은 Http Method (GET / POST / DELETE ...)로 표현한다.
+                            ```
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### REST API (Advanced) (Cont.d)
+
+                            * 바람직한 예
+                            ```
+                            POST /people {"name" : "DohanKim", "job" : "programmer"}
+                            GET /people/0
+                            PUT /peop/0 {"job" : "baeksu"}
+                            ```
+
+                            * 바람직하지 않은 예
+                            ```
+                            POST /people/add/ {"name" : "DohanKim", "job" : "programmer"}
+                            GET /people/get/0 {"name" : "DohanKim", "job" : "programmer"}
+                            ```
+                        </textarea>
+                    </section>
+
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ## Reference 
+
+                            * Roy Fielding - Architectural Styles and the Design of Network-based Software Architectures
+                            * https://developer.mozilla.org
+                        </textarea>
+                    </section>
+
+                </section>
+                
+                <section>
+                    <section data-markdown>
+                        <textarea data-template>
+                            ## Introduction to Python 
+
+                            ### Program의 흐름에 대해 느껴보자
+                        </textarea>
+                    </section>
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Program이란?? 
+
+                            * 요리의 레시피와 같은 것
+                            * 요리 재료 - 변수
+                             * 재료들을 어떻게 저장하지?
+                            * 요리 방법 - 로직
+                             * 요리재료(변수)를 가지고 어떻게 요리하지?
+                        </textarea>
+                    </section>
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### 일반적인 Program의 흐름 
+
+                            ```
+                            if 새로운메시지가 왔다:
+                              새로운 메시지를 보여준다.
+                            if 누군가 내 번호를 추가했다:
+                              추천인 리스트에 그 누군가를 보여준다
+                            if 채팅방을 터치했다:
+                              채팅방 화면을 보여준다
+                            exit
+                            ```
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### 정보를 담는 그릇 변수에 대해 알아보자 
+
+                            ```
+                            // 숫자를 저장할 수 있다!
+                            a = 1
+                            // 변수는 사칙연산을 할 수 있다!
+                            a = a + 1
+                            // 문자열도 저장할 수 있다!
+                            b = "I'm Dohan Kim"
+                            c = " and I'm a programmer"
+                            // 문자열의 덧셈은 이어붙이기다!
+                            result = b + c
+                            ```
+
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### 변수를 입력받아보자 
+
+                            * 깜장화면으로부터 입력을 받는 것을 표준 입력이라한다.
+                            * 깜장화면으로 출력하는 것을 표준 출력이라한다.
+
+                            ```
+                            a = input("Please input :")
+                            print(a)
+                            ```
+
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### 정보 처리 조리도구 함수에 대해 알아보자 
+
+                            * 함수는 인풋과 아웃풋이 있다!
+
+                            <pre class="hljs">
+                            // 함수 만들기
+                            def [함수이름] (인풋은 이런 것들이 있어요) :
+                              인풋을 지지고 볶고~
+                              return 아웃풋
+
+                            // 함수 호출
+                            [함수이름](인풋)
+                            </pre>
+                            
+                            <pre>
+                            <code class="hljs" data-trim>
+                            def add(a, b):
+                              return a + b
+
+                            a = 2
+                            b = 3
+                            result = add(a, b)
+                            print(result)
+                            </code>
+                            </pre>
+
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### 변수의 유효 범위
+
+                            * 함수 내부에 있는 변수들은 로컬 변수라한다.
+                             * 로컬 변수는 함수내에서만 유효하다
+                            * 함수 외부에 있는 변수들은 전역 변수라한다.
+                             * 전역변수는 함수내부에서 참조 가능하다.
+                             * 함수 내부에서 전역변수를 수정하기 위해서는 global을 붙여주자.
+                        
+                            ```
+                            a = 1
+                            def vartest(a):
+                              a = a +1
+
+                            vartest(a)
+                            print(a)
+
+                            ```
+
+                        </textarea>
+                    </section>
+
+
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### 정보 처리 조리도구 함수에 대해 알아보자 (Cont.d)
+
+                            <pre>
+                            <code class="hljs" data-trim>
+                            def holzzak(a):
+                                if a % 2 == 0:
+                                    print('짝수입니다.')
+                                else:
+                                    print('홀수입니다.')
+
+                            holzzak(1)
+                            holzzak(2)
+                            holzzak(100)
+                            </code>
+                            </pre>
+
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### 흐름을 변화시키는 If 문에 대해 알아보자 
+
+                            ```
+                            a = 2
+                            if a % 2 == 0:
+                              print('짝수입니다')
+                            else:
+                              print('홀수입니다')
+                            ```
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### 흐름을 반복하는 For문에 대해 알아보자 
+
+                            ```
+                            print('*')
+                            print('**')
+                            print('***')
+                            print('****')
+                            print('*****')
+                            print('******')
+                            print('*******')
+                            print('********')
+                            print('*********')
+                            print('**********')
+                            ```
+                        </textarea>
+                    </section>
+
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### 흐름을 반복하는 For문에 대해 알아보자 (Cont.d)
+
+                            ```
+                            for i in range(1, 10)
+                              print("*" * i)
+                            ```
+                        </textarea>
+                    </section>
+                    <section data-markdown>
+                        <textarea data-template>
+                            ## Reference
+
+                            * https://wikidocs.net
+                        </textarea>
+                    </section>
+                </section>
+                <section>
+                    <section data-markdown>
+                        ### Flask로 Web Application Server 
+
+                        * Bot 개발을 위한 첫걸음
+                    </section>
+                    <section data-markdown>
+                        ### Flask Python Library 설치 
+
+                        ```
+                        pip install flask
+                        ```
+
+                        OR
+
+                        ```
+                        File > Settings > Project > Project Interpreter
+                        ```
+
+                    </section>
+                    <section data-markdown>
+                        ### Home Page 만들기 
+
+                        ```
+                        from flask import Flask
+
+                        app = Flask(__name__)
+
+                        @app.route('/')
+                        def index():
+                          return 'this is my homepage!'
+
+                        if __name__ == '__main__':
+                          app.run()
+                        ```
+                    </section>
+                    <section data-markdown>
+                        ### 도전 과제 : 추억의 싸이월드 Today 만들기 
+
+                        * http://localhost:8000/visit 호출시 다음과 같이
+                        출력하는 홈페이지
+
+                         * 첫 방문 시는 축하합니다!를 출력하자
+
+                        ```
+                        당신은 1번째 방문객입니다! 축하합니다!
+
+                        ```
+
+                        ```
+                        당신은 2번째 방문객입니다!
+                        ```
+
+                        ```
+                        당신은 n번째 방문객입니다!
+                        ```
+                    </section>
+                </section>
+                <section style="text-align: left;">
+                    <h1>THE END</h1>
+                    <h2>Is there any questions?</h2>
+                    <p>
+                    - <a href="mailto:amos.doan@gmail.com">amos.doan@gmail.com</a> <br>
+                    - <a href="https://mossol.net">mossol.net</a> <br>
+                    </p>
+                </section>
+            </div>
+        </div>
+
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                              hash: true,
+                              dependencies: [
+                                  { src: 'plugin/markdown/marked.js' },
+                                  { src: 'plugin/markdown/markdown.js' },
+                                  { src: 'plugin/notes/notes.js', async: true },
+                                  { src: 'plugin/highlight/highlight.js', async: true }
+                              ]
+            });
+        </script>
+    </body>
+</html>
