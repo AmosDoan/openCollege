@@ -100,18 +100,18 @@
                                 <td>Programming이란?</td>
                             </tr>
                             <tr>
-                                <td>0.</td>
+                                <td>1.</td>
                                 <td>Computer Architecture부터 Network까지</td>
                             <tr>
-                                <td>1.</td>
+                                <td>2.</td>
                                 <td>Server - Client란? REST API란?</td>
                             </tr>
                             <tr>
-                                <td>2.</td>
+                                <td>3.</td>
                                 <td>Cloud & BigData</td>
                             </tr>
                             <tr>
-                                <td>3.</td>
+                                <td>4.</td>
                                 <td>요새 핫한 Machine Learning?</td>
                             </tr>
                         </tbody>
@@ -309,6 +309,22 @@
             </section>
             <section data-markdown>
                 <textarea data-template>
+                    ### 정수형 변수로 변환
+
+                    * 문자열을 정수로 변환
+                    * int() 함수 이용
+                    * 잘못된 인자가 전달되면 오류발생
+
+                    ```
+                    a = '1'
+                    b = int(a)
+                    print(type(a))
+                    print(type(b))
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
                     ### 문자열 변수 (String Variable)
 
                     * 문자를 나열한 친구들
@@ -323,10 +339,40 @@
             </section>
             <section data-markdown>
                 <textarea data-template>
+                    ### 문자열 변수로 변환
+
+                    * str() 함수를 이용
+
+                    ```
+                    a = '1'
+                    b = str(1)
+                    print(type(a))
+                    print(type(b))
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### 문자열 나누기
+
+                    * str() 함수를 이용
+
+                    ```
+                    a = '2 3'
+                    b = a.split()
+                    print(a)
+                    print(b[0])
+                    print(b[1])
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
                     ### 표준 입력 (Standard Input)
 
                     * 사용자에게 입력을 받고 싶다!!
                     * input() 함수를 사용
+                     * 함수의 결과 값은 문자열 변수임!!
 
 
                     ```
