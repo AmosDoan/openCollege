@@ -1,0 +1,412 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>OpenCollege - From Python Programming To Web Programming #2</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        let link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h3>Open College - <br/>From Python Programming<br/>To Web Programming</h3>
+            <h4>#Session2 2019/11/08</h4>
+            <p>
+                <small>Created by <a href="https://mossol.net">Amos Dawn</a></small>
+            </p>
+        </section>
+        <section>
+            <section data-markdown>
+                <textarea data-template>
+                    ## TODO
+
+                    * git bash를 이용한 Linux 커맨드 익히기
+                    * git을 이용하여 소스코드 관리하기
+                    * Python
+                     * Data Type - Dictionary
+                     * Logic Control - for문 / while문
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ## Group Homework
+
+                    * #openCollege-python 채널에 정답 코드 업로드
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### Errata
+
+                    * Session#1. - Tuple
+                    * 꽁꽁 얼린 List
+
+                    ```
+                    a = ("재희님", "지영님", "유선님", "은진님", "광우님")
+                    ```
+                </textarea>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>Gitbash를 통해 배우는 Unix 기본 커맨드</h3>
+                <p>
+                <h4>CUI와 친해지자~</h4>
+                </p>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ## File 조작 Command
+
+                    ```
+                    cd : 디렉토리 열기 (현재 위치 : ./ 상위 폴더 : ../)
+                    cp : 파일 복사 (디렉토리 복사의 경우 -r 추가)
+                    mv : 파일 이동
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ## git config
+
+                    * 다음과 같이 기본 설정을 합니다.
+
+                    ```
+                    // git commit에 사용될 username
+                    git config --global user.name "your_name"
+
+                    // git commit에 사용될 email
+                    git config --global user.email "your_email@example.com"
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ## git command
+
+                    ```
+                    git clone [Repository 주소]
+                    - 파일 수정 후
+                    git add [수정한 파일]
+                    git commit -m "수정한 내용"
+                    git push origin master
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ## git command (Cont.d)
+
+                    ```
+                    git clone [Repository 주소]
+                    - 파일 수정 후
+                    - 어 근데 잘못 수정!
+                    git checkout [수정한 파일]
+                    ```
+                </textarea>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>Python 고고씽~</h3>
+                <p>
+                    <h4>PyCharm을 켜주세요</h4>
+                </p>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ## Dictionary
+
+                    * 사전 / 전화번호부와 같은 Data Type!
+                    * 각각의 요소 (Element)는 Key와 Value로 구성!
+
+                    ```
+                    a = {'김도한' : '010-7188-7777', '신봉건' : '010-9798-8888'}
+                    b = {('유선님', '성악') : '이태원', ('김도한', '개발자') : '복정동'}
+                    c = dict(김도한 = 복정, 신봉건 = 잠실, 방민혜 = 인천)
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ## Dictionary (Cont.d)
+
+                    * 특정 값을 찾을 때에는 Key를 이용하자
+
+                    ```
+                    a = {'김도한' : '010-7188-7777', '신봉건' : '010-9798-8888'}
+                    dohan_phone_number = a['김도한']
+                    yusun_phone_number = a['정유선']
+                    jaehee_phone_number = a.get('염재희')
+                    bongkeun_phone_number = a.get('신봉건')
+                    # Update value
+                    a['김도한'] = '010-7178-7777'
+                    # Add new value with new key
+                    a['김도한집'] = '031-768-1234'
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### Dictionary (Cont.d)
+
+                    * Key에 상응하는 Value가 있는지는 in 혹은 not in 연산자를 이용!
+
+                    ```
+                    a = {'김도한' : '010-7188-7777', '신봉건' : '010-9798-8888'}
+                    is_dohan_exist = '김도한' in a
+                    is_eunjin_exist = '류은진' in a
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ## Dictionary (Cont.d)
+
+                    * 추가 / 삭제를 자유롭게
+                    * Dictionary 자체를 지울 때에는 clear() 메소드 이용
+
+                    ```
+                    a = {'김도한' : '010-7188-7777', '신봉건' : '010-9798-8888'}
+                    a['김진옥'] = '010-1234-1234'
+                    a.pop('김도한')
+                    del a['신봉건']
+                    a.clear()
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### Dictionary (Cont.d)
+
+                    * Key 혹은 Value만 쏙
+                    * 요소 전체를 쏙 (tuple로 리턴!)
+
+                    ```
+                    a = {'김도한' : '010-7188-7777', '신봉건' : '010-9798-8888'}
+                    # a.keys()의 반환 값의 Type은 dict_keys object
+                    a_key = list(a.keys())
+                    a_value = list(a.values())
+                    a_items = a.items()
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### 코딩해보기
+
+                    * 다음과 같은 Dictionary가 있다.
+
+                    ```
+                    menu = {'라면' : 4000, '만두' : 3500, '보쌈' : 28000}
+                    ```
+
+                    * 표준 입력으로부터 메뉴를 입력받아 값을 출력하는 프로그램을 작성하시오.
+
+                    ```
+                    메뉴를 입력하세요 : 라면
+                    라면은 4000원입니다.
+                    메뉴를 입력하세요 : 짜파게티
+                    짜파게티란 메뉴는 없습니다.
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### for문
+
+                    * 특정 로직을 반복해서 처리하기 위한 Logic!
+
+                    ```
+                    for 변수 in List (혹은 Tuple, String):
+                        수행할 친구들
+                    ```
+
+                    * for문을 이용하여 List에 있는 친구들 꺼내기
+
+                    ```
+                    friends = ['신봉건', '염재희', '류은진', '이광우', '정유선']
+                    for friend in friends:
+                        print('친구' + friend)
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### for문 - Dictionary 꺼내기
+
+                    * 각각의 상자에 접근해보자!
+
+                    ```
+                    a = {'김도한' : '010-7188-7777', '신봉건' : '010-9798-8888'}
+
+                    for name in a:
+                        print(name)
+
+                    for phone_number in a.values():
+                        print(value)
+
+                    for item in a.items():
+                        print(item)
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### range() 함수와 for문의 Collaboration
+
+                    * 특정 횟수만큼 반복하고 싶다!
+
+                    ```
+                    for a in range(10):
+                        print(a)
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### While문
+
+                    * 특정 조건이 성립하는 동안 처리를 반복실행 하고 싶다!
+
+                    ```
+                    while 조건:
+                        처리
+                    ```
+
+                    * 10까지 정수의 합을 구하기
+
+                    ```
+                    sum = 0
+                    n = 0
+                    while n < 11:
+                        sum = sum + n
+                        n += 1
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### for / while문 (continue와 break)
+
+                    * Continue - 이번 처리는 Skip하고 그 다음 처리 반복
+                    * Break - 여기까지 처리하겠다.
+
+                    ```
+                    a = 0
+                    while a < 7:
+                        a = a + 1
+                        if a == 3:
+                            break
+
+                    gadgets = ['맥북', '아이맥', '아이패드', '갤럭시']
+                    for gadget in gadgets:
+                        if gadget == '갤럭시':
+                            continue
+                        print('애플 제품입니다.')
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### List Comprehension
+
+                    * 특정 List에 대한 조작을 심플한 for문으로 표현할 수 있다!
+
+                    ```
+                    numbers = [1, 2, 3, 4]
+                    numbers_double = []
+                    for a in numbers:
+                        numbers_double.append(a * 2)
+                    ```
+
+                    * Python에서 정말 많이 사용된다.
+
+                    ```
+                    numbers_double = [ number * 2 for number in numbers ]
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### List Comprehension (Cont.d)
+
+                    * 조건을 추가할 수도 있다!
+
+                    ```
+                    numbers = [1, 2, 4, 8, 10, 14, 17]
+                    even_numbers_double = [ 2 * x for x in numbers if x % 2 == 0 ]
+                    ```
+                </textarea>
+            </section>
+        </section>
+        <section data-markdown>
+            <textarea data-template>
+                ## Group Homework
+
+                * 백준 (https://www.acmicpc.net/)
+                 * https://www.acmicpc.net/problem/2739
+                 * https://www.acmicpc.net/problem/10871
+                * Python이 보이는 그림책 로또게임 만들어서 git에 올리기
+            </textarea>
+        </section>
+        <section data-markdown>
+            <textarea data-template>
+                ## Homework
+
+                * 점프 투 파이썬 (https://wikidocs.net/book/1)
+                 * 02-3 리스트 자료형
+                 * 02-4 튜플 자료형
+                 * 02-5 딕셔너리 자료형
+                 * 03-3 for문
+                * 파이썬이 보이는 그림책
+                 * 2장 연산자 3장 리스트 4장 제어문
+            </textarea>
+        </section>
+
+        <section style="text-align: left;">
+            <h1>THE END</h1>
+            <h2>Is there any questions?</h2>
+            <p>
+                - <a href="mailto:amos.doan@gmail.com">amos.doan@gmail.com</a> <br>
+                - <a href="https://mossol.net">mossol.net</a> <br>
+            </p>
+        </section>
+    </div>
+</div>
+
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        hash : true,
+        dependencies: [
+            { src: 'plugin/markdown/marked.js' },
+            { src: 'plugin/markdown/markdown.js' },
+            { src: 'plugin/notes/notes.js', async: true },
+            { src: 'plugin/highlight/highlight.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>
