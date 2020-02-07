@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>OpenCollege - From Python Programming To Web Programming #5</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        let link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h3>Open College - <br/>From Python Programming<br/>To Web Programming</h3>
+            <h4>#Session5 2020/02/08</h4>
+            <p>
+                <small>Created by <a href="https://mossol.net">Amos Dawn</a></small>
+            </p>
+        </section>
+        <section>
+            <section data-markdown>
+                <textarea data-template>
+                    ## TODO
+
+                    * Python
+                     * 문법 총 복습
+                     * 전화번호부 프로그램 만들기
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ## 전화번호부 프로그램
+
+                    * 다음과 같은 프로그램을 만들어봅시다!
+                    * 최초 실행화면은 아래와 같고 끝을 입력하기 전까지는 계속해서 입력받는다.
+                    * 사용자는 조회 / 추가 / 삭제 / 확인 / 끝을 입력할 수 있다.
+
+                    ```
+                    등록된 전화번호를 조회하려면 조회, 전화번호를 추가하려면 추가, 삭제하려면 삭제, 확인하려면 확인, 끝내고 싶으면 끝을 입력하세요 :
+                    ```
+
+                    * 잘못된 명령어가 입력되면 다음과 같은 문구가 출력된다.
+
+                    ```
+                    등록된 전화번호를 조회하려면 조회, 전화번호를 추가하려면 추가, 삭제하려면 삭제, 확인하려면 확인, 끝내고 싶으면 끝을 입력하세요 : 굳
+                    명령어가 잘못되었습니다.
+                    등록된 전화번호를 조회하려면 조회, 전화번호를 추가하려면 추가, 삭제하려면 삭제, 확인하려면 확인, 끝내고 싶으면 끝을 입력하세요 : 굳
+                    ```
+
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ## 전화번호부 프로그램 (조회)
+
+                    * 등록된 전화번호가 없으면 등록된 번호가 없습니다를 출력
+
+                    ```
+                    등록된 전화번호를 조회하려면 조회, 전화번호를 추가하려면 추가, 삭제하려면 삭제, 끝내고 싶으면 끝을 입력하세요 : 조회
+                    등록된 번호가 없습니다.
+                    ```
+
+                    * 등록된 번호가 있는 경우
+
+                    ```
+                    등록된 전화번호를 조회하려면 조회, 전화번호를 추가하려면 추가, 삭제하려면 삭제, 끝내고 싶으면 끝을 입력하세요 : 조회
+                    이용섭 010-1234-1234
+                    김하경 010-2345-1234
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### 전화번호부 프로그램 (추가 / 삭제)
+
+                    * 추가를 입력하면 다음과 같이 추가를 할 수 있게 된다.
+
+                    ```
+                    등록된 전화번호를 조회하려면 조회, 전화번호를 추가하려면 추가, 삭제하려면 삭제, 확인하려면 확인, 끝내고 싶으면 끝을 입력하세요 : 추가
+                    이름, 번호를 입력하세요 : 조혜원 010-1234-7777
+                    추가되었습니다.
+                    ```
+
+                    * 삭제의 경우
+
+                    ```
+                    등록된 전화번호를 조회하려면 조회, 전화번호를 추가하려면 추가, 삭제하려면 삭제, 확인하려면 확인, 끝내고 싶으면 끝을 입력하세요 : 삭제
+                    삭제할 사람의 이름을 입력하세요 : 이용섭
+                    삭제되었습니다.
+                    ```
+                </textarea>
+            </section>
+        </section>
+        <section style="text-align: left;">
+            <h1>THE END</h1>
+            <h2>Is there any questions?</h2>
+            <p>
+                - <a href="mailto:amos.doan@gmail.com">amos.doan@gmail.com</a> <br>
+                - <a href="https://mossol.net">mossol.net</a> <br>
+            </p>
+        </section>
+    </div>
+</div>
+
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        hash : true,
+        dependencies: [
+            { src: 'plugin/markdown/marked.js' },
+            { src: 'plugin/markdown/markdown.js' },
+            { src: 'plugin/notes/notes.js', async: true },
+            { src: 'plugin/highlight/highlight.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>
