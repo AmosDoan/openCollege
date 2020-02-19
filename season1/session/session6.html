@@ -1,0 +1,283 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>OpenCollege - From Python Programming To Web Programming #6</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        let link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h3>Open College - <br/>From Python Programming<br/>To Web Programming</h3>
+            <h4>#Session6 2020/02/22</h4>
+            <p>
+                <small>Created by <a href="https://mossol.net">Amos Dawn</a></small>
+            </p>
+        </section>
+        <section>
+            <section data-markdown>
+                <textarea data-template>
+                    ## TODO
+
+                    * <bdi style="color:skyblue;">[50 min.]</bdi> Server - Client란? REST API란?
+                     * <bdi style="color:skyblue;">[10 min.]</bdi> Break time
+                    * <bdi style="color:skyblue;">[50 min.]</bdi> - Flask의 기초
+
+                </textarea>
+            </section>
+        </section>
+        <section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### Computer Network
+
+                    * 태초의 Computer는 그냥 계산만 하는 기계
+                    * Computer와 Computer 사이의 통신에 대한 Needs가 생기기 시작
+                     * 다양한 Computer Network가 등장
+                     * Internet - Network의 Network
+
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### Server & Client
+
+                    * Server
+                     * 다른 Computer에 서비스를 제공하는 Program
+                     * Web Server, Application Server, File Server, Game Server
+                    * Client
+                     * Service 혹은 Resource를 다른 프로그램에게 요청하는 Program
+                     * Web Browser, FTP Client, Game Client
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ### Networking Protocol
+
+                    * Computer와 Computer 사이에 어떠한 방법으로 통신을
+                    할지 규칙이 필요함
+                    * Data를 언제 어떻게 전송할 것인지? 약속을 하자!
+                     * 즉, 약속된 통신 방법
+                     * http, http, TCP/IP, ftp, ssh (...)
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ### HTTP Protocol
+
+                    * HTML 문서와 같은 리소스를 가져울 수 있도록 해주는
+                    Protocol
+
+                    <img src="./images/http_protocol.png" width="50%"/>
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                   ### Web Server
+
+                   * Web Resource를 제공하는 Server
+                    * 정적 Data를 Serving
+                    * Apache Web Server, Nginx Server, IIS
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ### Web Application Server
+
+                    * Business Logic을 실행한 결과를 제공하는 Server
+                     * 동적 Data를 Serving
+                     * Apache Tomcat, PHP Module on Web Server, Eclipse Jetty
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ### HTTP Flow
+
+                    * HTTP Request와 그에 대한 Response로 구성
+                    * Request와 Response는 HTTP Message이며, Header와 Body로 구성됨
+
+                    <img src="./images/HTTP_Request.png" width="30%"/>
+                    <img src="./images/HTTP_Response.png" width="30%"/>
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ### HTTP Message Example
+
+                    ```
+                    curl -X GET -L http://naver.com
+                    ---
+                    > GET / HTTP/1.1
+                    > Host: naver.com
+                    > User-Agent: curl/7.54.0
+                    > Accept: */*
+                    ```
+
+                    ```
+                    < HTTP/2 200
+                    < server: NWS
+                    < date: Sun, 09 Jun 2019 06:15:02 GMT
+                    < content-type: text/html; charset=UTF-8
+                    ```
+                </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+                    ### HTTP Response Code
+
+                    <table>
+                        <thead>
+                            <td>
+                                Status Code
+                            </td>
+                            <td>
+                                Description
+                            </td>
+                        </thead>
+                        <tr>
+                            <td>200 OK</td>
+                            <td>요청에 대한 처리가 성공</td>
+                        </tr>
+                        <tr>
+                            <td>404 Not Found</td>
+                            <td>요청받은 Resource가 없음</td>
+                        </tr>
+                        <tr>
+                            <td>500 Internal Server Error</td>
+                            <td>서버 내부 요류</td>
+                        </tr>
+                    </table>
+
+                    * https://developer.mozilla.org/ko/docs/Web/HTTP/Status
+                </textarea>
+            </section>
+        </section>
+
+        <section>
+            <section data-markdown>
+                ### Flask로 Web Application Server
+
+                * Bot 개발을 위한 첫걸음
+            </section>
+            <section data-markdown>
+                ### Flask Python Library 설치
+
+                ```
+                pip install flask
+                ```
+
+                OR
+
+                ```
+                File > Settings > Project > Project Interpreter
+                ```
+
+            </section>
+            <section data-markdown>
+                ### Home Page 만들기
+
+                ```
+                from flask import Flask
+
+                app = Flask(__name__)
+
+                @app.route('/')
+                def index():
+                    return 'this is my homepage!'
+
+                if __name__ == '__main__':
+                    app.run()
+                ```
+            </section>
+            <section data-markdown>
+                ### 도전 과제 (1) : Welcome! 홈페이지 만들기
+
+                * http://localhost:8000/ 호출시 다음과 같이 출력하는 홈페이지
+
+                ```
+                환영합니다! 누구누구의 홈페이지입니다!
+
+                ```
+
+                * http://localhost:8000/introduction 호출시 다음과 같이 출력하는 홈페이지
+
+                ```
+                제 이름은 김아무개입니다.
+                ```
+            </section>
+            <section data-markdown>
+                ### 도전 과제 (2) : Today Counter 만들기
+
+                * http://localhost:8000/visit 호출시 다음과 같이
+                출력하는 홈페이지
+
+                * 첫 방문 시는 축하합니다!를 출력하자
+
+                ```
+                당신은 1번째 방문객입니다! 축하합니다!
+
+                ```
+
+                ```
+                당신은 2번째 방문객입니다!
+                ```
+
+                ```
+                당신은 n번째 방문객입니다!
+                ```
+            </section>
+        </section>
+        <section style="text-align: left;">
+            <h1>THE END</h1>
+            <h2>Is there any questions?</h2>
+            <p>
+                - <a href="mailto:amos.doan@gmail.com">amos.doan@gmail.com</a> <br>
+                - <a href="https://mossol.net">mossol.net</a> <br>
+            </p>
+        </section>
+    </div>
+</div>
+
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        hash : true,
+        dependencies: [
+            { src: 'plugin/markdown/marked.js' },
+            { src: 'plugin/markdown/markdown.js' },
+            { src: 'plugin/notes/notes.js', async: true },
+            { src: 'plugin/highlight/highlight.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>
