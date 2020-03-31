@@ -1,0 +1,271 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>OpenCollege - From Python Programming To Web Programming #7</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        let link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h3>Open College - <br/>From Python Programming<br/>To Web Programming</h3>
+            <h4>#Session7 2020/04/04</h4>
+            <p>
+                <small>Created by <a href="https://mossol.net">Amos Dawn</a></small>
+            </p>
+        </section>
+        <section>
+            <section data-markdown>
+                <textarea data-template>
+                    ## TODO
+
+                    * <bdi style="color:skyblue;">[50 min.]</bdi> Cloud란?
+                     * <bdi style="color:skyblue;">[10 min.]</bdi> Break time
+                    * <bdi style="color:skyblue;">[50 min.]</bdi> - Flask의 기초
+
+                </textarea>
+            </section>
+        </section>
+
+        <section>
+
+            <section data-markdown>
+                    <textarea data-template>
+                        ### Cloud Service
+
+                        <img src="https://cdn.softwaretestinghelp.com/wp-content/qa/uploads/2017/03/Google-Cloud-Platform.jpg"/>
+                        <img src="https://cdn.softwaretestinghelp.com/wp-content/qa/uploads/2017/03/Dropbox.jpg"/>
+                        <img src="https://cdn.softwaretestinghelp.com/wp-content/qa/uploads/2017/03/AWS.jpg"/>
+                        <img src="https://cdn.softwaretestinghelp.com/wp-content/qa/uploads/2017/03/Microsoft-Azure.jpg"/>
+                    </textarea>
+            </section>
+            <section data-markdown>
+                    <textarea data-template>
+                            ### What is the Cloud??
+
+                            * Cloud Computing
+
+                            ```
+                            Cloud computing is the on-demand availability
+                            of computer system resources,
+                            especially data storage and computing power,
+                            without direct active management by the user.
+                            ```
+
+                             * 물리적인 컴퓨팅 장비가 없는 사용자에게 인터넷을 통하여 자원을 제공함
+
+                            * Cloud Storage
+
+                            ```
+                            Cloud storage is a model of computer data storage
+                            in which the digital data is stored in logical pools.
+                            ```
+
+                        </textarea>
+            </section>
+
+            <section data-markdown>
+                    <textarea data-template>
+                            ### Cloud 종류
+
+                            <table>
+                                <thead>
+                                    <td>
+                                        종류
+                                    </td>
+                                    <td>
+                                        설명
+                                    </td>
+                                </thead>
+                                <tr>
+                                    <td>
+                                        IaaS
+                                    </td>
+                                    <td>
+                                        Service provides the infrastructure like Servers, Operating Systems and Storage
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        PaaS
+                                    </td>
+                                    <td>
+                                        Service is used in developing, testing and maintaining of software
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        SaaS
+                                    </td>
+                                    <td>
+                                        Service makes the users connect to the applications through the Internet on a subscription basis
+                                    </td>
+                                </tr>
+                                </table>
+                        </textarea>
+            </section>
+
+            <section data-markdown>
+                    <textarea data-template>
+                            ### SaaS PaaS 등 용어 정리
+
+                            <img src="images/cloud.png">
+
+                        </textarea>
+            </section>
+
+            <section data-markdown>
+                    <textarea data-template>
+                            ### Cloud가 등장하기 이전의 개발자들은..
+
+                            * Server를 구매
+                            * IDC에 Server를 세팅
+                            * IDC 임대료, 전기세, 서버 유지비 지출
+                            * 다른 국가에 서비스하기 위해서는 다시 위와 같은 짓을 반복
+
+                        </textarea>
+            </section>
+
+            <section data-markdown>
+                    <textarea data-template>
+                            ### Cloud가 등장할 수 있던 배경
+
+                            * Virtualization
+                        </textarea>
+            </section>
+        </section>
+
+        <section>
+            <section data-markdown>
+                ### Flask
+
+                * Flask is a web application framework written in Python
+                * Web 개발을 위한 첫걸음
+                * 참고 페이지 : https://www.tutorialspoint.com/flask/flask_overview.htm
+            </section>
+            <section data-markdown>
+                ### Flask Python Library 설치
+
+                ```
+                pip install flask
+                ```
+
+                OR
+
+                ```
+                File > Settings > Project > Project Interpreter
+                ```
+
+            </section>
+            <section data-markdown>
+                ### Home Page 만들기
+
+                ```
+                from flask import Flask
+
+                app = Flask(__name__)
+
+                @app.route('/')
+                def index():
+                    return 'this is my homepage!'
+
+                if __name__ == '__main__':
+                    app.run()
+                ```
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### Static File Serving
+
+                    * Webpage를 표시하기 위한 HTML, Javascript, CSS 파일들을 Static File이라 함
+                    * app.py - Web API를 구현할 Python File
+                    * templates - Web API를 통하여 Serving 할 HTML 파일
+                      * introduce.html - 자기소개 페이지
+
+                    <img src="./images/configuration.png">
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### Flaks Template
+
+                    * Web API의 결과물을 HTML로 표현하기 위한 기능
+
+                    ```
+                    @app.route('/profile')
+                    def profile():
+                        address = request.args.get('address')
+                        return render_template('address.html', address = address
+                    ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                    <textarea data-template>
+
+                    ### introduce.html
+
+                    * 간단한 페이지
+
+                    ```
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <title>Title</title>
+                    </head>
+                    <body>
+                    바디입니다!
+                    </body>
+                    </html>
+                    ```
+
+                    </textarea>
+            </section>
+        </section>
+        <section style="text-align: left;">
+            <h1>THE END</h1>
+            <h2>Is there any questions?</h2>
+            <p>
+                - <a href="mailto:amos.doan@gmail.com">amos.doan@gmail.com</a> <br>
+                - <a href="https://mossol.net">mossol.net</a> <br>
+            </p>
+        </section>
+    </div>
+</div>
+
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        hash : true,
+        dependencies: [
+            { src: 'plugin/markdown/marked.js' },
+            { src: 'plugin/markdown/markdown.js' },
+            { src: 'plugin/notes/notes.js', async: true },
+            { src: 'plugin/highlight/highlight.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>
