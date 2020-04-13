@@ -1,0 +1,242 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>OpenCollege - From Python Programming To Web Programming #8</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        let link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h3>Open College - <br/>From Python Programming<br/>To Web Programming</h3>
+            <h4>#Session7 2020/04/18</h4>
+            <p>
+                <small>Created by <a href="https://mossol.net">Amos Dawn</a></small>
+            </p>
+        </section>
+
+        <section>
+            <section data-markdown>
+                    <textarea data-template>
+                            ## Today's TODO
+
+                            * <bdi style="color:skyblue;">[40 min.]</bdi> HTTP Method 알아보기
+                            * <bdi style="color:skyblue;">[70 min.]</bdi> Flask로 간단한 게시판 만들기
+                        </textarea>
+            </section>
+        </section>
+
+        <section>
+            <section data-markdown>
+                ### Flask와 Http Method
+
+                * Http Method란 Client와 Server 사이의 데이터를 요청하는 방식
+                * GET, POST, PUT, DELETE 등이 있다!
+                * Data는 Http Message의 형태로 전달됨
+                * Header와 Body가 있다!
+            </section>
+            <section data-markdown>
+                ### GET
+
+                * URL 뒤에 ?를 기점으로 전달값이름=전달할값 의 형태로 전달
+                * 값들 사이에는 &로 연결
+                * 길이 제한이 존재함
+                * Server로부터 특정 값을 읽기 위함
+
+                ```
+                http://myhomepage.com/home?id=blahblah&password=123123
+                ```
+            </section>
+            <section data-markdown>
+                ### POST
+
+                * Http Body에 데이터를 실어 보내, URL에 데이터가 노출되지 않음
+                * Server에 데이터를 전송할 때 주로 사용
+
+                ```
+                POST http://nate.com/register {"name" : "dohan"}
+                ```
+            </section>
+            <section data-markdown>
+                ### Flask의 GET
+
+                * request.args.get을 통하여 전달된 값을 읽어울 수 있다!
+
+                ```
+                @app.route('/profile')
+                def profile():
+                name = request.args.get('name')
+                age = request.args.get('age')
+                return "My age is " + age
+                ```
+
+            </section>
+            <section data-markdown>
+                ### Flask의 POST
+
+                ```
+                @app.route('/register', methods=['POST'])
+                def register():
+                header = request.headers['Contents-Length']
+                body = request.get_data(as_text=True)
+
+                @app.route('/write', methods=['POST'])
+                def write():
+                header = request.headers['Contents-Length']
+                body = request.form['text']
+                ```
+
+            </section>
+            <section data-markdown>
+                ### Flask의 POST
+
+                * Body에 실린 Data의 종류에 따라 다양한 method들이 있음
+                * request.get_data - 아무 데이터나 다 읽는다!
+                * request.form - HTML form을 통하여 들어온 데이터를 읽는다!
+                * request.files - File을 읽는다!
+                * request.json - json 형식의 파일을 읽는다
+
+            </section>
+        </section>
+
+        <section>
+            <section data-markdown>
+                ### Flask로 Web Application Server
+
+                * Flask로 초간단 게시판을 만들어보자
+            </section>
+
+            <section data-markdown>
+                    <textarea data-template>
+                    ### Project 구성
+
+                    * app.py - Web API를 구현할 Python File
+                    * templates - Web API를 통하여 Serving 할 HTML 파일
+                      * write.html - 글쓰기 페이지
+                      * writeComplete.html - 글 업로드 완료 페이지
+
+                    <img src="./images/configuration.png">
+                    </textarea>
+            </section>
+
+            <section data-markdown>
+                    <textarea data-template>
+                    ### App.py
+
+                    ```
+                    from flask import Flask
+                    from flask import request
+
+                    app = Flask(__name__)
+
+                    @app.route('/writeComplete', methods=['POST'])
+                    def writeComplete():
+                        contents = request.get_data(as_text=True)
+                        return render_template('writeComplete.html' contentsInHtml=contents)
+
+                    @app.route('/write')
+                    def write():
+                        return render_template('write.html')
+
+                    if __name__ == '__main__':
+                        app.run()
+                    ```
+                    </textarea>
+            </section>
+
+            <section data-markdown>
+                    <textarea data-template>
+
+                    ### write.html
+
+                    * Form으로 구성된 페이지
+
+                    ```
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <title>Title</title>
+                    </head>
+                    <body>
+                        <form action="http://localhost:5000/writeComplete" method="post">
+                            <p>글을 쓰세요</p>
+                            <p><input type="text" name="contents"></p>
+                        </form>
+                    </body>
+                    </html>
+                    ```
+                    </textarea>
+            </section>
+            <section data-markdown>
+                    <textarea data-template>
+
+                    ### writeComplete.html
+
+                    * 간단한 페이지
+
+                    ```
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <title>Title</title>
+                    </head>
+                    <body>
+                            <p>등록된 글</p>
+                            &lbrace;&lbrace;contentInHtml&rcub; &rcub;
+                    </body>
+                    </html>
+                    ```
+
+                    </textarea>
+            </section>
+        </section>
+
+        <section style="text-align: left;">
+            <h1>THE END</h1>
+            <h2>Is there any questions?</h2>
+            <p>
+                - <a href="mailto:amos.doan@gmail.com">amos.doan@gmail.com</a> <br>
+                - <a href="https://mossol.net">mossol.net</a> <br>
+            </p>
+        </section>
+    </div>
+</div>
+
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        hash : true,
+        dependencies: [
+            { src: 'plugin/markdown/marked.js' },
+            { src: 'plugin/markdown/markdown.js' },
+            { src: 'plugin/notes/notes.js', async: true },
+            { src: 'plugin/highlight/highlight.js', async: true }
+        ]
+    });
+</script>
+</body>
+</html>
